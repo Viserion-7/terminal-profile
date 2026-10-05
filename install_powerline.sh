@@ -1,13 +1,14 @@
+#!/usr/bin/env bash
+
 # Fail on any command.
-set -eux pipefail
+set -euxo pipefail
 
-# Install Powerline for VIM.
-sudo apt install -y python3-pip
-pip3 install --user powerline-status
-sudo cp configs/.vimrc ~/.vimrc
-sudo apt install -y fonts-powerline
+# Install Powerline from Ubuntu packages.
+sudo apt update
+sudo apt install -y powerline fonts-powerline
 
-# Install Patched Font
-mkdir ~/.fonts
-sudo cp -a fonts/. ~/.fonts/
-fc-cache -vf ~/.fonts/
+# Install the Vim configuration.
+cp configs/.vimrc ~/.vimrc
+
+# Install the bundled Powerline fonts.
+./fonts/install.sh
