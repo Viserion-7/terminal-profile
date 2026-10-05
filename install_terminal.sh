@@ -1,6 +1,13 @@
+#!/usr/bin/env bash
+
 # Fail on any command.
-set -eux pipefail
+set -euxo pipefail
 
 # Install ZSH
+sudo apt update
 sudo apt install -y git-core zsh curl
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install Oh My Zsh if it is not already installed.
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
